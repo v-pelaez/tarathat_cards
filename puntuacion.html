@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+        <link rel="icon" href="imagenes/T.png">
+        <link rel="stylesheet" href="basic.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap"
+            rel="stylesheet">
+        <script src="temas.js" defer></script>
+        <script src="puntuacion.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Tarathat</h1>
+            <p>El juego de cartas</p>
+        </header>
+        <nav>
+            <ol>
+                <li class="botonmenu">
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li class="botonmenu">
+                    <a href="juego.html">Juego</a>
+                </li>
+                <li class="botonmenu" id="seleccionado">
+                    <a href="puntuacion.html">Ultima Puntuiación</a>
+                </li>
+            </ol>
+            <div id="skin">
+                <button id="skinIzq">«</button>
+                <p>Tema</p>
+                <button id="skinDer">»</button>
+            </div>
+        </nav>
+        <main>
+
+            <div class="legado">
+                <h2>¡He aqui tu legado!</h2>
+                <p id="mensaje"></p>
+                <div id="puntuacion">
+                    <p>
+                        Vidas: <span id="pVidas"></span>
+                    </p>
+                    <p>
+                        Racha Maxima: <span id="pRacha"></span>
+                    </p>
+                    <p>
+                        Porcentaje de aciertos: <span id="pPorc"></span>
+                    </p>
+                    <p>
+                        Emparejadas: <span id="pParejas"></span>
+                    </p>
+                    <p>
+                        Tiempo: <span id="pTiempo"></span>
+                    </p>
+                </div>
+                <a href="juego.html"><button>Jugar de nuevo</button></a>
+            </div>
+        </main>
+        <footer>
+            <h2>Ilustraciones por Víctor Peláez. Texturas y dorsos de Blizzard
+                Entertainment.</h2>
+        </footer>
+    </body>
+</html>

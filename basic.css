@@ -1,0 +1,244 @@
+:root {
+  --colortransp: rgba(95, 158, 160, 0.473);
+  --colorboton: goldenrod;
+  --colorletrasboton: #333;
+  --colortitulo: cadetblue;
+  --colorletras: bisque;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "New Rocker", Georgia, "Times New Roman", Times, serif,
+    "Lucida Sans", Arial, sans-serif;
+  list-style: none;
+  box-sizing: border-box;
+  text-decoration: none;
+  
+}
+a {
+  text-decoration: none; 
+  color: inherit; 
+  border: none; 
+  background: none; 
+}
+
+body {
+  display: grid;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(imagenes/StoneFloorTexture.png);
+  background-repeat: repeat;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 1rem;
+  width: 100%;
+  min-height: 100vh;
+  grid-template-areas:
+    "h"
+    "n"
+    "m"
+    "f";
+}
+
+header {
+  grid-area: h;
+  z-index: 10;
+  background-color: rgb(56, 30, 30);
+  padding: 2rem;
+  width: 100%;
+  align-content: center;
+  text-align: center;
+  background-image: url(imagenes/overview_bg.avif);
+  background-repeat: repeat;
+  background-size: 100%;
+  box-shadow: 2px 2px 5px rgb(5, 5, 5);
+  text-shadow: 2px 2px 5px rgb(5, 5, 5);
+}
+
+header h1 {
+  font-size: 70px;
+  color: var(--colortitulo);
+}
+
+header p {
+  color: var(--colorletras);
+}
+
+nav {
+  grid-area: n;
+  display: flex;
+  padding: 1rem;
+  background-color: var(--colortransp);
+  border-radius: 5px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+nav ol {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+#skin {
+  justify-self: end;
+  max-width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: var(--colorletras);
+  gap: 1rem;
+  border-radius: 7px;
+  box-shadow: 1px 1px 10px rgb(5, 5, 5);
+}
+#skin button {
+  background-color: rgba(108, 156, 158, 0);
+  border-radius: 5px;
+  border-style: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--colorletras);
+}
+
+.botonmenu {
+  font-size: medium;
+  color: var(--colorletras);
+  padding: 0.5rem;
+}
+main {
+  grid-area: m;
+  background-color: rgba(0, 0, 0, 0.363);
+  border-radius: 5px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+footer {
+  grid-area: f;
+  z-index: 11;
+  padding: 2rem;
+  width: 100%;
+  background-image: url(imagenes/overview_bg.avif);
+  background-repeat: repeat;
+  background-size: 100%;
+  background-position: bottom;
+  box-shadow: 2px 2px 10px rgb(5, 5, 5);
+  text-shadow: 2px 2px 5px rgb(5, 5, 5);
+}
+
+footer h2 {
+  font-size: small;
+  text-align: right;
+  color: goldenrod;
+  font-weight: lighter;
+  text-shadow: 2px 2px 5px rgb(5, 5, 5);
+}
+
+/**********************************************************/
+#seleccionado{
+  background-color: #33333375;
+  border-radius: 7px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.caja {
+  background-color: var(--colortransp);
+  box-shadow: 2px 2px 5px rgb(5, 5, 5);
+  text-shadow: 2px 2px 5px rgb(5, 5, 5);
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  border-radius: 5px;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  color: var(--colorletras);
+  animation: aparecer 1s ease-in-out;
+  max-width: 30rem;
+}
+
+
+.caja button, .legado button {
+  background-color: var(--colorboton);
+  color: var(--colorletrasboton);
+  box-shadow: 2px 2px 5px rgb(5, 5, 5);
+  border-radius: 5px;
+  border-style: none;
+  padding: 1rem;
+  cursor: pointer;
+  max-width: 20rem;
+  align-self: center;
+}
+
+.legado {
+  background-color: var(--colortransp);
+  box-shadow: 2px 2px 5px rgb(5, 5, 5);
+  text-shadow: 2px 2px 5px rgb(5, 5, 5);
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+  border-radius: 5px;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  color: var(--colorletras);
+  animation: aparecer 1s ease-in-out;
+  max-width: 30rem;
+}
+#puntuacion{
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+#mensaje {
+  max-width: 20rem;
+}
+
+
+
+@keyframes seleccion {
+  0% {
+    box-shadow: 0 0 10px gold, 0 0 20px #ffcc00;
+  }
+  50% {
+    box-shadow: 0 0 15px #ff9900, 0 0 30px #ffcc00;
+  }
+  100% {
+    box-shadow: 0 0 10px gold, 0 0 20px #ffcc00;
+  }
+}
+
+@keyframes flotar {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes aparecer {
+  0% {
+    transform: scale(0.5) rotate(-10deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}

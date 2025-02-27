@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tarathat Cards</title>
+        <link rel="icon" href="imagenes/T.png">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=New+Rocker&display=swap"
+            rel="stylesheet">
+        <script src="dm.js" defer></script>
+        <script src="temas.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Tarathat</h1>
+            <p>El juego de cartas</p>
+        </header>
+        <nav>
+            <ol>
+                <li class="botonmenu">
+                    <a href="index.html">Inicio</a>
+                </li>
+                <li class="botonmenu" id="seleccionado">
+                    <a href="juego.html">Juego</a>
+                </li>
+                <li class="botonmenu">
+                    <a href="puntuacion.html">Ultima Puntuiación</a>
+                </li>
+                
+                <div id="skin">
+                    <button id="skinIzq">«</button>
+                    <p>Tema</p>
+                    <button id="skinDer">»</button>
+                </div>
+            </ol>
+            
+        </nav>
+        <main>
+            <div id="menu">
+                <h2>Antes de empezar...</h2>
+
+                <h3>Elige tu dorso</h3>
+                <div id="selectDorso">
+                    <button id="dorsoIzq">«</button>
+                    <img id="dorsoVista" src="imagenes/reversos/basic.png">
+                    <button id="dorsoDer">»</button>
+                </div>
+                <form>
+
+                    <label for="parejas">Número de parejas:</label>
+                    <input type="number" id="parejas" name="parejas" min="5" max="10" value="7">
+                    <label for="vidas">Número de vidas:</label>
+                    <input type="number" id="vidas" name="vidas" min="1" max="5"
+                        value="3">
+                    <button type="button" id="iniciar">Iniciar Juego</button>
+                </form>
+            </div>
+            <div id="marcador">
+                <h2>Puntuacion: <span id="puntos"></span></h2>
+                <h2><span id="porcentaje"></span>% Aciertos </h2>
+                <h2>Racha: <span id="racha"></span></h2>
+                <h2 id="tiempo">Tiempo: <span id="contador">0</span> </h2>
+                <button id="reiniciar">Reiniciar</button>
+            </div>
+            <div id="tablero">
+
+            </div>
+        </main>
+        <footer>
+            <h2>Ilustraciones por Víctor Peláez. Texturas y dorsos de Blizzard Entertainment.</h2>
+        </footer>
+    </body>
+</html>
