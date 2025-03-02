@@ -44,7 +44,6 @@ let colores = [
   },
 ];
 function cambiarColor() {
-  console.log(indiceColor);
   const root = document.documentElement;
   const color = colores[indiceColor];
   root.style.setProperty("--colortransp", color.colortransp);

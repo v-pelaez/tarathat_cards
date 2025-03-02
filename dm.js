@@ -147,7 +147,6 @@ const dm = {
   },
 
   crearBaraja() {
-    this.dificultad = this.numParejas;
     for (let i = 0; i < this.numParejas; i++) {
       const carta = this.coleccion[i % this.coleccion.length];
       this.baraja.push(new Carta(carta.nombre, carta.imagen, carta.dorso));
@@ -171,6 +170,7 @@ const dm = {
   },
   crearTablero() {
     this.tablero.innerHTML = ""; // Limpiar el tablero
+    const fragment = document.createDocumentFragment();
     for (let i = 0; i < this.baraja.length; i++) {
       const carta = this.baraja[i];
 
@@ -178,8 +178,10 @@ const dm = {
       carta.revelada = true;
       carta.emparejada = false;
 
-      this.tablero.appendChild(carta.elemento);
+      fragment.appendChild(carta.elemento);
     }
+
+    this.tablero.appendChild(fragment);
     setTimeout(() => {
       this.baraja.forEach((carta) => carta.voltear());
     }, 1000 * (this.dificultad / 1.5));
@@ -213,9 +215,11 @@ const dm = {
 
   iniciarPartida() {
     this.menu.style.display = "none";
+    this.player = document.getElementById("player").value;
     this.numParejas = parseInt(document.getElementById("parejas").value);
     this.numVidas = parseInt(document.getElementById("vidas").value);
     this.vidasInicial = this.numVidas;
+    this.dificultad = this.numParejas / this.numVidas;
     this.crearBaraja(this.numParejas);
     this.crearTablero();
     this.crearVidas();
@@ -243,7 +247,7 @@ const dm = {
   },
 
   iniciarCuentaAtras() {
-    this.tiempoRestante = 10 * this.dificultad;
+    this.tiempoRestante = Math.round(10 * this.dificultad);
     this.tiempoInicial = this.tiempoRestante;
     let intervalo;
     this.contador.textContent = this.tiempoRestante;
@@ -258,46 +262,43 @@ const dm = {
   },
 
   finalizarPartida() {
-    if (this.trampas) {
-      this.puntos = 0;
-      this.actualizarMarcador;
-      this.player = prompt(`¡Sucio y ruin tramposo! tu puntuación es ${this.puntos}`);
-      
-    } else if (this.tiempoRestante > 0 && this.numVidas > 0) {
-      ///
-      this.puntos = this.puntos * this.dificultad;
+    if (!this.reinicio) {
+      if (this.trampas) {
+        this.puntos = 0;
+        this.actualizarMarcador;
+        alert(`¡Sucio y ruin tramposo! tu puntuación es ${this.puntos}`);
+      } else if (this.tiempoRestante > 0 && this.numVidas > 0) {
+        this.puntos = this.puntos * this.dificultad;
 
-      this.actualizarMarcador;
-      this.player = prompt(
-        `¡Felicidades, valiente héroe! Has completado la misión con éxito. Tu puntuación final es ${this.puntos}. Escribe tu nombre para ser recordado:`
+        this.actualizarMarcador;
+        alert(
+          `¡Felicidades, valiente héroe! Has completado la misión con éxito. Tu puntuación final es ${this.puntos}.`
+        );
+      } else if (this.numVidas === 0 && this.tiempoRestante > 0) {
+        alert(
+          `Has luchado con honor, pero has perdido todas tus vidas en la batalla. Tu puntuación final es ${this.puntos}.`
+        );
+      } else if (this.tiempoRestante === 0) {
+        alert(
+          `¡El tiempo se ha agotado! Tu aventura ha llegado a su fin. Tu puntuación final es ${this.puntos}.`
+        );
+      }
+      localStorage.setItem("puntos", this.puntos);
+      localStorage.setItem("tiempo", this.tiempoInicial - this.tiempoRestante);
+      localStorage.setItem("vidas", this.numVidas);
+      localStorage.setItem("vidaMax", this.vidasInicial);
+      localStorage.setItem("aciertos", this.aciertos);
+      localStorage.setItem(
+        "porAciertos",
+        Math.round(Math.max(0, (this.aciertos / this.intentos) * 100), 2)
       );
-    } else if (this.numVidas === 0 && this.tiempoRestante > 0) {
-      //
-      this.player = prompt(
-        `Has luchado con honor, pero has perdido todas tus vidas en la batalla. Tu puntuación final es ${this.puntos}. Escribe tu nombre para ser recordado:`
-      );
-    } else if (this.tiempoRestante === 0 && !this.reinicio) {
-      //
-
-      this.player = prompt(
-        `¡El tiempo se ha agotado! Tu aventura ha llegado a su fin. Tu puntuación final es ${this.puntos}. Escribe tu nombre para ser recordado:`
-      );
+      localStorage.setItem("numParejas", this.numParejas);
+      localStorage.setItem("player", this.player);
+      localStorage.setItem("racha", this.rachaMax);
+      localStorage.setItem("trampas", this.trampas);
+      window.location.href = "puntuacion.html";
+      this.trampas = false;
     }
-    localStorage.setItem("puntos", this.puntos);
-    localStorage.setItem("tiempo", (this.tiempoInicial -this.tiempoRestante));
-    localStorage.setItem("vidas", this.numVidas);
-    localStorage.setItem("vidaMax", this.vidasInicial)
-    localStorage.setItem("aciertos", this.aciertos)
-    localStorage.setItem(
-      "porAciertos",
-      Math.round(Math.max(0, (this.aciertos / this.intentos) * 100), 2)
-    );
-    localStorage.setItem("numParejas",this.numParejas)
-    localStorage.setItem("player", this.player);
-    localStorage.setItem("racha", this.rachaMax);
-    localStorage.setItem("trampas",this.trampas);
-    window.location.href = "puntuacion.html";
-    this.trampas = false;
     this.reinicio = false;
   },
 
@@ -324,7 +325,7 @@ const dm = {
       this.segundaCarta.destacar();
       this.aciertos++;
       this.racha++;
-      if (this.racha > this.rachaMax){
+      if (this.racha > this.rachaMax) {
         this.rachaMax = this.racha;
       }
       this.puntos += 1 * Math.max(1, this.racha) * this.tiempoRestante;
@@ -358,10 +359,14 @@ const dm = {
 };
 
 // Inicializar el juego
-document.getElementById("iniciar").addEventListener("click", () => {
-  dm.iniciarPartida();
-});
+document.addEventListener("DOMContentLoaded", (event) => {
+  const form = document.getElementById("juegoForm");
 
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    dm.iniciarPartida();
+  });
+});
 document.getElementById("reiniciar").addEventListener("click", () => {
   dm.reiniciarPartida();
 });

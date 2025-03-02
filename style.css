@@ -169,7 +169,7 @@ footer h2 {
   flex-direction: column;
   gap: 0.5rem;
 }
-#menu form input[type="number"] {
+#menu form input {
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -178,9 +178,13 @@ footer h2 {
   color: #333;
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
-  text-align: right;
+  
   align-self: center;
   width: 7rem;
+}
+
+#menu form input[type="number"]{
+  text-align: right;
 }
 #menu label {
   color: var(--colorletras);
@@ -218,9 +222,17 @@ footer h2 {
   padding: 1rem;
   cursor: pointer;
 }
-
-#selectDorso img {
-  max-width: 5rem;
+#conDorso{
+  width: 5rem;
+  height: 7.5rem;
+}
+#dorsoVista{
+  width: 100%;
+  height: 100%;
+  
+  border-radius: 7px;
+  animation: flotar 3s ease-in-out infinite, seleccion 3s infinite;
+  object-fit: cover;
 }
 
 #tablero {
@@ -342,7 +354,7 @@ footer h2 {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
   100% {
     transform: translateY(0);

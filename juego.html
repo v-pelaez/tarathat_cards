@@ -28,7 +28,7 @@
                     <a href="juego.html">Juego</a>
                 </li>
                 <li class="botonmenu">
-                    <a href="puntuacion.html">Ultima Puntuiación</a>
+                    <a href="puntuacion.html">Ultima Puntuación</a>
                 </li>
                 
                 <div id="skin">
@@ -46,17 +46,18 @@
                 <h3>Elige tu dorso</h3>
                 <div id="selectDorso">
                     <button id="dorsoIzq">«</button>
-                    <img id="dorsoVista" src="imagenes/reversos/basic.png">
+                    <div id="conDorso"><img id="dorsoVista" src="imagenes/reversos/basic.png"></div>
                     <button id="dorsoDer">»</button>
                 </div>
-                <form>
-
+                <form id="juegoForm">
+                    <label for="player">Nombre</label>
+                    <input type="text" id="player" name="player" placeholder="Boblin" pattern="[A-Za-z]+" autocomplete="off">
                     <label for="parejas">Número de parejas:</label>
                     <input type="number" id="parejas" name="parejas" min="5" max="10" value="7">
                     <label for="vidas">Número de vidas:</label>
                     <input type="number" id="vidas" name="vidas" min="1" max="5"
                         value="3">
-                    <button type="button" id="iniciar">Iniciar Juego</button>
+                    <button type="submit" id="iniciar">Iniciar Juego</button>
                 </form>
             </div>
             <div id="marcador">
