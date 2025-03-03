@@ -53,6 +53,7 @@ class Carta {
       this.elemento.classList.add("bocarriba");
       this.revelada = true;
     }
+    dm.sPagDer.play();
     this.destacar();
   }
 }
@@ -105,6 +106,15 @@ const dm = {
     { imagen: "imagenes/reversos/zuldazar.png" },
   ],
 
+  sInicio : new Audio ('sonidos/Inicio.ogg'),
+  sPagDer : new Audio ('sonidos/pagDer.ogg'),
+  sPagIzq : new Audio ('sonidos/pagIzq.ogg'),
+  sMatch : new Audio ('sonidos/Acierto.ogg'),
+  sTiempo : new Audio ('sonidos/goblin.ogg'),
+  sTop: new Audio ('sonidos/LFG_RoleCheck.ogg'),
+
+
+
   menu: document.getElementById("menu"),
   iniciar: document.getElementById("iniciar"),
   reiniciar: document.getElementById("reiniciar"),
@@ -123,6 +133,7 @@ const dm = {
   player: null,
   indiceDorso: 0,
 
+  alerta: false,
   tiempoInicial: 0,
   vidasInicial: 0,
   aciertos: 0,
@@ -136,6 +147,7 @@ const dm = {
   contador: document.getElementById("contador"),
   // Configuración Inicial
   cambiarDorso() {
+    dm.sPagIzq.play();
     const dorsoPreview = document.getElementById("dorsoVista");
     this.dorsoElegido = this.dorsos[this.indiceDorso].imagen;
     dorsoPreview.src = this.dorsoElegido;
@@ -184,7 +196,7 @@ const dm = {
     this.tablero.appendChild(fragment);
     setTimeout(() => {
       this.baraja.forEach((carta) => carta.voltear());
-    }, 1000 * (this.dificultad / 1.5));
+    }, 1000 * Math.max(3,(this.dificultad)));
   },
 
   mostrarMarcador() {
@@ -214,12 +226,14 @@ const dm = {
   },
 
   iniciarPartida() {
+    this.sInicio.play();
     this.menu.style.display = "none";
     this.player = document.getElementById("player").value;
     this.numParejas = parseInt(document.getElementById("parejas").value);
     this.numVidas = parseInt(document.getElementById("vidas").value);
     this.vidasInicial = this.numVidas;
     this.dificultad = this.numParejas / this.numVidas;
+    this.alerta = false;
     this.crearBaraja(this.numParejas);
     this.crearTablero();
     this.crearVidas();
@@ -247,13 +261,17 @@ const dm = {
   },
 
   iniciarCuentaAtras() {
-    this.tiempoRestante = Math.round(10 * this.dificultad);
+    this.tiempoRestante = Math.round(20 * this.dificultad);
     this.tiempoInicial = this.tiempoRestante;
     let intervalo;
     this.contador.textContent = this.tiempoRestante;
     intervalo = setInterval(() => {
       this.tiempoRestante--;
       this.contador.textContent = this.tiempoRestante;
+      if (this.tiempoRestante < 10 && !this.alerta && !this.reinicio){
+        this.sTiempo.play();
+        this.alerta = true;
+      }
       if (this.tiempoRestante <= 0) {
         clearInterval(intervalo);
         this.finalizarPartida();
@@ -262,6 +280,7 @@ const dm = {
   },
 
   finalizarPartida() {
+    this.sTop.play();
     if (!this.reinicio) {
       if (this.trampas) {
         this.puntos = 0;
@@ -278,13 +297,14 @@ const dm = {
         alert(
           `Has luchado con honor, pero has perdido todas tus vidas en la batalla. Tu puntuación final es ${this.puntos}.`
         );
-      } else if (this.tiempoRestante === 0) {
+      } else if (this.tiempoRestante === 0 ) {
         alert(
           `¡El tiempo se ha agotado! Tu aventura ha llegado a su fin. Tu puntuación final es ${this.puntos}.`
         );
       }
       localStorage.setItem("puntos", this.puntos);
       localStorage.setItem("tiempo", this.tiempoInicial - this.tiempoRestante);
+      localStorage.setItem("tiempoFinal", this.tiempoRestante);
       localStorage.setItem("vidas", this.numVidas);
       localStorage.setItem("vidaMax", this.vidasInicial);
       localStorage.setItem("aciertos", this.aciertos);
@@ -319,6 +339,7 @@ const dm = {
   compararCartas() {
     this.intentos++;
     if (this.primeraCarta.nombre === this.segundaCarta.nombre) {
+      this.sMatch.play();
       this.primeraCarta.emparejada = true;
       this.segundaCarta.emparejada = true;
       this.primeraCarta.destacar();

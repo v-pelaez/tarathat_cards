@@ -82,14 +82,14 @@ nav ol {
   gap: 1rem;
 }
 #skin {
-  justify-self: end;
-  max-width: 30%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   color: var(--colorletras);
   gap: 1rem;
   border-radius: 7px;
+  align-self: center;
+  margin-left:auto;
   box-shadow: 1px 1px 10px rgb(5, 5, 5);
 }
 #skin button {
