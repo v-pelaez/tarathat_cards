@@ -34,10 +34,10 @@ const apuntador = {
       this.jugar.textContent = `Jugar ahora`;
       this.puntuacion.innerHTML = "";
     } else {
-      const mensajeMuer = `En memoria de ${this.player} que perdio todas sus vidas por alcanzar ${this.puntos} puntos`;
-      const mensajeVic = `Alabado sea ${this.player} que completo su hazaña con ${this.puntos} puntos`;
-      const mensajeTiem = `La borrachera le hizo perder el tiempo pero ${this.player} logro ${this.puntos} puntos`;
-      const mensajeTramp = `La rata almizclera de ${this.player} quiso engañarnos haciendo trampas`;
+      const mensajeMuer = `En memoria de ${this.player} que perdió todas sus vidas por alcanzar ${this.puntos} puntos.`;
+      const mensajeVic = `Alabado sea ${this.player} que completó su hazaña con ${this.puntos} puntos.`;
+      const mensajeTiem = `La borrachera le hizo perder el tiempo pero ${this.player} logró ${this.puntos} puntos.`;
+      const mensajeTramp = `La rata almizclera de ${this.player} quiso engañarnos haciendo trampas.`;
       let mensajeFinal = "";
       if (this.trampas === "true") {
         mensajeFinal = mensajeTramp;

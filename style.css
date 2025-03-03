@@ -289,11 +289,11 @@ footer h2 {
   height: 100%;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  transform: rotateY(180deg);
+  transform: rotateY(180deg); /* Rota la perspectiva 3D 180 grados*/
 }
 
 .carta.bocarriba .carta-inner {
-  transform: rotateY(0deg);
+  transform: rotateY(0deg); /* Rota la perspectiva 3D 180 grados a la inversa*/
 }
 
 .carta .cara, .carta .reverso {

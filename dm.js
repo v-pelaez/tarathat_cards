@@ -110,8 +110,8 @@ const dm = {
   sPagDer : new Audio ('sonidos/pagDer.ogg'),
   sPagIzq : new Audio ('sonidos/pagIzq.ogg'),
   sMatch : new Audio ('sonidos/Acierto.ogg'),
-  sTiempo : new Audio ('sonidos/goblin.ogg'),
-  sTop: new Audio ('sonidos/LFG_RoleCheck.ogg'),
+  sTiempo : new Audio ('sonidos/Goblin.ogg'),
+  stop: new Audio ('sonidos/LFG_RoleCheck.ogg'),
 
 
 
@@ -266,6 +266,7 @@ const dm = {
     let intervalo;
     this.contador.textContent = this.tiempoRestante;
     intervalo = setInterval(() => {
+      this.antiCheat();
       this.tiempoRestante--;
       this.contador.textContent = this.tiempoRestante;
       if (this.tiempoRestante < 10 && !this.alerta && !this.reinicio){
@@ -280,7 +281,7 @@ const dm = {
   },
 
   finalizarPartida() {
-    this.sTop.play();
+    this.stop.play();
     if (!this.reinicio) {
       if (this.trampas) {
         this.puntos = 0;
