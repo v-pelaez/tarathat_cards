@@ -256,6 +256,7 @@ footer h2 {
   align-content: center;
   margin-top: 1rem;
   margin-bottom: 3rem;
+  gap: 1rem;
 }
 #tiempo {
   width: 10rem;
@@ -370,5 +371,91 @@ footer h2 {
   }
   100% {
     transform: scale(1) rotate(0deg);
+  }
+}
+@media (max-width: 768px) {
+  body {
+    grid-template-rows: auto 1fr auto;
+    gap: 0.5rem;
+  }
+
+  header h1 {
+    font-size: 50px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ol {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+  #skin{
+    margin-left: 0;
+    align-self: auto;
+  }
+  #menu {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  #menu form input {
+    width: 100%;
+  }
+
+  #menu button {
+    padding: 0.5rem;
+  }
+
+  #tablero {
+    gap: 0.5rem;
+  }
+
+  .carta {
+    width: 7rem;
+    height: 10rem;
+  }
+
+  .vida {
+    width: 2rem;
+  }
+
+  #marcador {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #tiempo {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 40px;
+  }
+
+  header p {
+    font-size: 12px;
+  }
+
+  .carta {
+    width: 5rem;
+    height: 7rem;
+  }
+
+  .vida {
+    width: 1.5rem;
   }
 }

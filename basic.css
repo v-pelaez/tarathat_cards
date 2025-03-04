@@ -242,3 +242,74 @@ footer h2 {
     transform: scale(1) rotate(0deg);
   }
 }
+@media (max-width: 768px) {
+  body {
+    gap: 0.5rem;
+  }
+
+  header h1 {
+    font-size: 50px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ol {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  main {
+    padding: 0.5rem;
+    flex-direction: column;
+  }
+
+  #skin{
+    margin-left: 0;
+    align-self: auto;
+  }
+
+  .caja, .legado {
+    padding: 1rem;
+    gap: 0.5rem;
+    align-self: center;
+  }
+  
+  .caja button, .legado button {
+    margin: 0.5rem;
+  }
+
+
+  #puntuacion, #mensaje {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 40px;
+  }
+
+  header p {
+    font-size: 12px;
+  }
+
+  .caja, .legado {
+    padding: 0.5rem;
+    gap: 0.25rem;
+  }
+
+  .caja button, .legado button {
+    margin: 0.25rem;
+  }
+
+  #puntuacion, #mensaje {
+    max-width: 100%;
+  }
+}
