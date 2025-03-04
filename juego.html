@@ -30,30 +30,40 @@
                 <li class="botonmenu">
                     <a href="puntuacion.html">Ultima Puntuación</a>
                 </li>
-                
+
                 <div id="skin">
                     <button id="skinIzq">«</button>
                     <p>Tema</p>
                     <button id="skinDer">»</button>
                 </div>
             </ol>
-            
+
         </nav>
         <main>
+            <div id="modal" class="modal">
+                <div class="modalCont">
+                    <p id="modalMen"></p>
+                    <button id="modalBoton">Aceptar</button>
+                </div>
+            </div>
             <div id="menu">
                 <h2>Antes de empezar...</h2>
 
                 <h3>Elige tu dorso</h3>
                 <div id="selectDorso">
                     <button id="dorsoIzq">«</button>
-                    <div id="conDorso"><img id="dorsoVista" src="imagenes/reversos/basic.png"></div>
+                    <div id="conDorso"><img id="dorsoVista"
+                            src="imagenes/reversos/basic.png"></div>
                     <button id="dorsoDer">»</button>
                 </div>
                 <form id="juegoForm">
                     <label for="player">Nombre</label>
-                    <input type="text" id="player" name="player" placeholder="Boblin" required pattern="[A-Za-z]+" autocomplete="off">
+                    <input type="text" id="player" name="player"
+                        placeholder="Boblin" required pattern="[A-Za-z]+"
+                        autocomplete="off">
                     <label for="parejas">Número de parejas</label>
-                    <input type="number" id="parejas" name="parejas" min="5" max="10" value="7">
+                    <input type="number" id="parejas" name="parejas" min="5"
+                        max="10" value="7">
                     <label for="vidas">Número de vidas</label>
                     <input type="number" id="vidas" name="vidas" min="1" max="5"
                         value="3">
@@ -72,7 +82,8 @@
             </div>
         </main>
         <footer>
-            <h2>Ilustraciones por Víctor Peláez. Texturas y dorsos de Blizzard Entertainment.</h2>
+            <h2>Ilustraciones por Víctor Peláez. Texturas y dorsos de Blizzard
+                Entertainment.</h2>
         </footer>
     </body>
 </html>

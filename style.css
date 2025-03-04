@@ -16,10 +16,10 @@
   text-decoration: none;
 }
 a {
-  text-decoration: none; 
-  color: inherit; 
-  border: none; 
-  background: none; 
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  background: none;
 }
 
 body {
@@ -58,10 +58,13 @@ header {
 header h1 {
   font-size: 70px;
   color: var(--colortitulo);
+
+  transition: background-color 1s ease, color 1s ease;
 }
 
 header p {
   color: var(--colorletras);
+  transition: background-color 1s ease, color 1s ease;
 }
 
 nav {
@@ -72,6 +75,7 @@ nav {
   border-radius: 5px;
   margin-left: 1rem;
   margin-right: 1rem;
+  transition: background-color 1s ease, color 1s ease;
 }
 nav ol {
   width: 100%;
@@ -88,8 +92,10 @@ nav ol {
   gap: 1rem;
   border-radius: 7px;
   align-self: center;
-  margin-left:auto;
+  margin-left: auto;
   box-shadow: 1px 1px 10px rgb(5, 5, 5);
+
+  transition: background-color 1s ease, color 1s ease;
 }
 #skin button {
   background-color: rgba(108, 156, 158, 0);
@@ -98,13 +104,18 @@ nav ol {
   padding: 0.5rem;
   cursor: pointer;
   color: var(--colorletras);
+
+  transition: background-color 1s ease, color 1s ease;
 }
 
 .botonmenu {
   font-size: medium;
   color: var(--colorletras);
   padding: 0.5rem;
+
+  transition: background-color 1s ease, color 1s ease;
 }
+
 main {
   grid-area: m;
   background-color: rgba(0, 0, 0, 0.363);
@@ -140,7 +151,7 @@ footer h2 {
 }
 
 /**********************************************************/
-#seleccionado{
+#seleccionado {
   background-color: #33333375;
   border-radius: 7px;
   padding-left: 1rem;
@@ -162,6 +173,8 @@ footer h2 {
   text-align: center;
   color: var(--colorletras);
   animation: aparecer 1s ease-in-out;
+
+  transition: background-color 1s ease, color 1s ease;
 }
 
 #menu form {
@@ -178,16 +191,18 @@ footer h2 {
   color: #333;
   font-size: 1rem;
   transition: border-color 0.3s, box-shadow 0.3s;
-  
+
   align-self: center;
   width: 7rem;
 }
 
-#menu form input[type="number"]{
+#menu form input[type="number"] {
   text-align: right;
 }
 #menu label {
   color: var(--colorletras);
+
+  transition: background-color 1s ease, color 1s ease;
 }
 
 #menu button {
@@ -198,6 +213,8 @@ footer h2 {
   padding: 1rem;
   cursor: pointer;
   color: var(--colorletrasboton);
+
+  transition: background-color 1s ease, color 1s ease;
 }
 
 #selectDorso {
@@ -205,6 +222,8 @@ footer h2 {
   align-items: center;
   justify-content: space-around;
   color: var(--colorletras);
+
+  transition: background-color 1s ease, color 1s ease;
   gap: 1rem;
 }
 
@@ -221,15 +240,17 @@ footer h2 {
   border-style: none;
   padding: 1rem;
   cursor: pointer;
+
+  transition: background-color 1s ease, color 1s ease;
 }
-#conDorso{
+#conDorso {
   width: 5rem;
   height: 7.5rem;
 }
-#dorsoVista{
+#dorsoVista {
   width: 100%;
   height: 100%;
-  
+
   border-radius: 7px;
   animation: flotar 3s ease-in-out infinite, seleccion 3s infinite;
   object-fit: cover;
@@ -257,11 +278,12 @@ footer h2 {
   margin-top: 1rem;
   margin-bottom: 3rem;
   gap: 1rem;
+
+  transition: background-color 1s ease, color 1s ease;
 }
 #tiempo {
   width: 10rem;
   text-align: left;
-  
 }
 .divVidas {
   display: flex;
@@ -271,7 +293,6 @@ footer h2 {
 .vida {
   width: 3rem;
   animation: flotar 3s ease-in-out infinite;
-  
 }
 
 .carta {
@@ -297,7 +318,8 @@ footer h2 {
   transform: rotateY(0deg); /* Rota la perspectiva 3D 180 grados a la inversa*/
 }
 
-.carta .cara, .carta .reverso {
+.carta .cara,
+.carta .reverso {
   overflow: hidden;
   position: absolute;
   width: 100%;
@@ -308,12 +330,12 @@ footer h2 {
   box-shadow: 8px 8px 16px rgb(0, 0, 0);
 }
 
-.carta .cara img, .carta .reverso img {
+.carta .cara img,
+.carta .reverso img {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Ajusta la imagen al contenedor */
 }
-
 
 .carta .reverso {
   transform: rotateY(180deg);
@@ -332,10 +354,50 @@ footer h2 {
 
 .enEspera {
   border: 1px solid gold;
-  
+
   border-radius: 13px;
   color: white;
   animation: seleccion 1.5s infinite alternate;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.596);
+}
+
+.modalCont {
+  background-color: var(--colortransp);
+  box-shadow: 8px 8px 16px rgb(0, 0, 0);
+  margin: 25% auto;
+  padding: 20px;
+  color: var(--colorletras);
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  border-radius: 10px;
+  animation: aparecer 1s ease-in-out;
+}
+
+#modalMen {
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.404);
+}
+
+#modalBoton {
+  background-color: var(--colorboton);
+  color: var(--colorletrasboton);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.404);
 }
 
 @keyframes seleccion {
@@ -400,7 +462,7 @@ footer h2 {
   main {
     padding: 0.5rem;
   }
-  #skin{
+  #skin {
     margin-left: 0;
     align-self: auto;
   }
@@ -456,6 +518,6 @@ footer h2 {
   }
 
   .vida {
-    width: 1.5rem;
+    width: 2rem;
   }
 }

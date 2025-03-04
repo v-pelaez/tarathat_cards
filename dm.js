@@ -106,14 +106,12 @@ const dm = {
     { imagen: "imagenes/reversos/zuldazar.png" },
   ],
 
-  sInicio : new Audio ('sonidos/Inicio.ogg'),
-  sPagDer : new Audio ('sonidos/pagDer.ogg'),
-  sPagIzq : new Audio ('sonidos/pagIzq.ogg'),
-  sMatch : new Audio ('sonidos/Acierto.ogg'),
-  sTiempo : new Audio ('sonidos/Goblin.ogg'),
-  stop: new Audio ('sonidos/LFG_RoleCheck.ogg'),
-
-
+  sInicio: new Audio("sonidos/Inicio.ogg"),
+  sPagDer: new Audio("sonidos/pagDer.ogg"),
+  sPagIzq: new Audio("sonidos/pagIzq.ogg"),
+  sMatch: new Audio("sonidos/Acierto.ogg"),
+  sTiempo: new Audio("sonidos/Goblin.ogg"),
+  stop: new Audio("sonidos/LFG_RoleCheck.ogg"),
 
   menu: document.getElementById("menu"),
   iniciar: document.getElementById("iniciar"),
@@ -132,7 +130,7 @@ const dm = {
   reinicio: false,
   player: null,
   indiceDorso: 0,
-
+  partidaFin: false,
   alerta: false,
   tiempoInicial: 0,
   vidasInicial: 0,
@@ -196,7 +194,7 @@ const dm = {
     this.tablero.appendChild(fragment);
     setTimeout(() => {
       this.baraja.forEach((carta) => carta.voltear());
-    }, 1000 * Math.max(3,(this.dificultad)));
+    }, 1000 * Math.max(3, this.dificultad));
   },
 
   mostrarMarcador() {
@@ -234,6 +232,7 @@ const dm = {
     this.vidasInicial = this.numVidas;
     this.dificultad = this.numParejas / this.numVidas;
     this.alerta = false;
+    this.partidaFin = false;
     this.crearBaraja(this.numParejas);
     this.crearTablero();
     this.crearVidas();
@@ -269,60 +268,82 @@ const dm = {
       this.antiCheat();
       this.tiempoRestante--;
       this.contador.textContent = this.tiempoRestante;
-      if (this.tiempoRestante < 10 && !this.alerta && !this.reinicio){
+      if (this.tiempoRestante < 10 && !this.alerta && !this.reinicio) {
         this.sTiempo.play();
         this.alerta = true;
       }
-      if (this.tiempoRestante <= 0) {
+      if (this.tiempoRestante <= 0 || this.partidaFin) {
         clearInterval(intervalo);
         this.finalizarPartida();
       }
     }, 1000);
   },
 
+  mostrarModal(mensaje) {
+    const modal = document.getElementById("modal");
+    const modalMen = document.getElementById("modalMen");
+    const modalBoton = document.getElementById("modalBoton");
+
+    modalMen.textContent = mensaje;
+    modal.style.display = "block";
+
+    const cerrarModal = () => {
+      modal.style.display = "none";
+      this.redirigirAPuntuacion();
+    };
+
+    modalBoton.addEventListener("click", () => {
+      cerrarModal();
+    });
+  },
+
+  redirigirAPuntuacion() {
+    localStorage.setItem("puntos", this.puntos);
+    localStorage.setItem("tiempo", this.tiempoInicial - this.tiempoRestante);
+    localStorage.setItem("tiempoFinal", this.tiempoRestante);
+    localStorage.setItem("vidas", this.numVidas);
+    localStorage.setItem("vidaMax", this.vidasInicial);
+    localStorage.setItem("aciertos", this.aciertos);
+    localStorage.setItem(
+      "porAciertos",
+      Math.round(Math.max(0, (this.aciertos / this.intentos) * 100), 2)
+    );
+    localStorage.setItem("numParejas", this.numParejas);
+    localStorage.setItem("player", this.player);
+    localStorage.setItem("racha", this.rachaMax);
+    localStorage.setItem("trampas", this.trampas);
+    window.location.href = "puntuacion.html";
+    this.trampas = false;
+  },
+
   finalizarPartida() {
     this.stop.play();
+    this.partidaFin = true;
     if (!this.reinicio) {
       if (this.trampas) {
         this.puntos = 0;
-        this.actualizarMarcador;
-        alert(`¡Sucio y ruin tramposo! tu puntuación es ${this.puntos}`);
+        this.actualizarMarcador();
+        this.mostrarModal(
+          `¡Sucio y ruin tramposo! tu puntuación es ${this.puntos}`
+        );
       } else if (this.tiempoRestante > 0 && this.numVidas > 0) {
-        this.puntos = this.puntos * this.dificultad;
-
-        this.actualizarMarcador;
-        alert(
+        this.puntos = Math.round(this.puntos * this.dificultad);
+        this.actualizarMarcador();
+        this.mostrarModal(
           `¡Felicidades, valiente héroe! Has completado la misión con éxito. Tu puntuación final es ${this.puntos}.`
         );
       } else if (this.numVidas === 0 && this.tiempoRestante > 0) {
-        alert(
+        this.mostrarModal(
           `Has luchado con honor, pero has perdido todas tus vidas en la batalla. Tu puntuación final es ${this.puntos}.`
         );
-      } else if (this.tiempoRestante === 0 ) {
-        alert(
+      } else if (this.tiempoRestante === 0) {
+        this.mostrarModal(
           `¡El tiempo se ha agotado! Tu aventura ha llegado a su fin. Tu puntuación final es ${this.puntos}.`
         );
       }
-      localStorage.setItem("puntos", this.puntos);
-      localStorage.setItem("tiempo", this.tiempoInicial - this.tiempoRestante);
-      localStorage.setItem("tiempoFinal", this.tiempoRestante);
-      localStorage.setItem("vidas", this.numVidas);
-      localStorage.setItem("vidaMax", this.vidasInicial);
-      localStorage.setItem("aciertos", this.aciertos);
-      localStorage.setItem(
-        "porAciertos",
-        Math.round(Math.max(0, (this.aciertos / this.intentos) * 100), 2)
-      );
-      localStorage.setItem("numParejas", this.numParejas);
-      localStorage.setItem("player", this.player);
-      localStorage.setItem("racha", this.rachaMax);
-      localStorage.setItem("trampas", this.trampas);
-      window.location.href = "puntuacion.html";
-      this.trampas = false;
     }
     this.reinicio = false;
   },
-
   // Gestión de Cartas
   revelarCarta(carta) {
     if (!carta.revelada && !carta.emparejada) {
