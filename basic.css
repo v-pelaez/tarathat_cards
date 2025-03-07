@@ -270,19 +270,16 @@ footer h2 {
     font-size: 14px;
   }
 
-  nav {
-    flex-direction: column;
-    align-items: center;
-  }
-
   nav ol {
-    flex-direction: column;
     gap: 0.5rem;
+    flex-wrap: nowrap;
   }
-
+  nav ol li{
+    align-self: center;
+  }
   main {
-    padding: 0.5rem;
-    flex-direction: column;
+    padding: 2rem;
+    flex-direction: column-reverse;
   }
 
   #skin {
@@ -305,6 +302,9 @@ footer h2 {
   #puntuacion,
   #mensaje {
     max-width: 100%;
+  }
+  footer{
+  
   }
 }
 

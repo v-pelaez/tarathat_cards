@@ -455,12 +455,15 @@ footer h2 {
   }
 
   nav ol {
-    flex-direction: column;
     gap: 0.5rem;
+    flex-wrap: nowrap;
   }
-
+  nav ol li{
+    align-self: center;
+  }
   main {
-    padding: 0.5rem;
+    padding: 2rem;
+    flex-direction: column-reverse;
   }
   #skin {
     margin-left: 0;
@@ -487,14 +490,19 @@ footer h2 {
     width: 7rem;
     height: 10rem;
   }
-
+  .divVidas{
+    display: block;
+  }
   .vida {
     width: 2rem;
   }
 
   #marcador {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.5rem;
+    font-size: small;
+    margin-top: 1rem;
+    margin-bottom: 0;
   }
 
   #tiempo {
@@ -517,7 +525,4 @@ footer h2 {
     height: 7rem;
   }
 
-  .vida {
-    width: 2rem;
-  }
 }

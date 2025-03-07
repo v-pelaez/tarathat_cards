@@ -194,7 +194,7 @@ const dm = {
     this.tablero.appendChild(fragment);
     setTimeout(() => {
       this.baraja.forEach((carta) => carta.voltear());
-    }, 1000 * Math.max(3, this.dificultad));
+    }, 1000 * Math.max(5, this.dificultad));
   },
 
   mostrarMarcador() {
@@ -260,7 +260,7 @@ const dm = {
   },
 
   iniciarCuentaAtras() {
-    this.tiempoRestante = Math.round(20 * this.dificultad);
+    this.tiempoRestante = Math.round(20 * this.numParejas);
     this.tiempoInicial = this.tiempoRestante;
     let intervalo;
     this.contador.textContent = this.tiempoRestante;
