@@ -73,7 +73,6 @@ nav {
   display: flex;
   padding: 1rem;
   background-color: var(--colortransp);
-  border-radius: 5px;
   transition: background-color 1s ease, color 1s ease;
 }
 nav ol {
