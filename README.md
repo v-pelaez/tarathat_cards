@@ -2,6 +2,9 @@
 
 ¡Bienvenido a Tarathat Cards! Este es un juego de cartas donde la astucia y la memoria son clave. El objetivo es emparejar cartas en el menor tiempo posible y con la menor cantidad de errores.
 
+
+**[Prueba la Demo](v-pelaez.github.io/tarathat_cards/)**
+
 ## Características
 
 - **Temas Personalizables**: Cambia el tema visual del juego.
